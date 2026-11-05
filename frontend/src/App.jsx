@@ -37,13 +37,14 @@ function AppRoutes() {
       <Route path="/alerts" element={<ProtectedRoute><MainLayout><FraudAlertsPage /></MainLayout></ProtectedRoute>} />
       <Route path="/analytics" element={<ProtectedRoute><MainLayout><AnalyticsPage /></MainLayout></ProtectedRoute>} />
       <Route path="/admin" element={<ProtectedRoute adminOnly><MainLayout><AdminDashboardPage /></MainLayout></ProtectedRoute>} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL || '/'}>
       <ThemeProvider>
         <AuthProvider>
           <Toaster position="top-right" toastOptions={{ duration: 3000, style: { background: '#1a1f3a', color: '#e2e8f0', border: '1px solid #252a4a' } }} />
